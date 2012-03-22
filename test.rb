@@ -70,5 +70,11 @@ class GameTest < Test::Unit::TestCase
     assert_equal 2, @game.frames.size
     assert_equal 10, @game.get_score
   end
-    
+
+  def test_strike_affects_next_frame
+    @game.add_frame Frame.new 10, 0
+    @game.add_frame Frame.new 3, 6
+    assert_equal 28, @game.get_score
+  end
+
 end

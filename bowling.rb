@@ -7,12 +7,19 @@ class Game
   end
   
   def add_frame frame
-    @frames << frame
-  end
+    @frames.unshift frame
+  end  
   
   def get_score
     score = 0
-    @frames.each { |frame| score += frame.get_score }
+    @frames.each_with_index do |frame, index|
+      score += frame.get_score
+      if index + 1 < @frames.size
+        if @frames[index + 1].is_strike
+          score += frame.get_score
+        end
+      end
+    end
     score
   end
   
@@ -37,6 +44,10 @@ class Frame
   
   def is_spare
     !is_strike and @a + @b == 10
+  end
+  
+  def to_s
+    "[#{@a}, #{@b}]"
   end
   
 end
