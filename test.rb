@@ -82,5 +82,15 @@ class GameTest < Test::Unit::TestCase
     @game.add_frame Frame.new 4, 2
     assert_equal 20, @game.get_score
   end
+  
+  def test_only_allowed_ten_frames
+    (1..10).each do
+      @game.add_frame Frame.new 1, 2
+    end
+    assert_raise RuntimeError do
+      @game.add_frame Frame.new 1, 2
+    end
+    assert_equal 10, @game.frames.size
+  end
 
 end

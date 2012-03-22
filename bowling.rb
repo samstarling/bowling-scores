@@ -7,7 +7,11 @@ class Game
   end
   
   def add_frame frame
-    @frames.unshift frame
+    if @frames.size < 10
+      @frames.unshift frame
+    else
+      raise "Game over"
+    end
   end  
   
   def get_score
