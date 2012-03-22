@@ -17,6 +17,8 @@ class Game
       if index + 1 < @frames.size
         if @frames[index + 1].is_strike
           score += frame.get_score
+        elsif @frames[index + 1].is_spare
+          score += frame.a
         end
       end
     end
@@ -26,6 +28,8 @@ class Game
 end
 
 class Frame
+  
+  attr_accessor :a, :b
   
   def initialize a, b
     @a, @b = a, b

@@ -76,5 +76,11 @@ class GameTest < Test::Unit::TestCase
     @game.add_frame Frame.new 3, 6
     assert_equal 28, @game.get_score
   end
+  
+  def test_spare_affects_next_frame
+    @game.add_frame Frame.new 7, 3
+    @game.add_frame Frame.new 4, 2
+    assert_equal 20, @game.get_score
+  end
 
 end
